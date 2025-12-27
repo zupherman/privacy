@@ -3,119 +3,410 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate-key="gizlilikMenuLabel">Gizlilik Politikası - TIR Masraf Takip</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Gizlilik Politikası - TIR Masraf Takip</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+        :root {
+            --md-sys-color-primary: #6750A4;
+            --md-sys-color-on-primary: #FFFFFF;
+            --md-sys-color-primary-container: #EADDFF;
+            --md-sys-color-on-primary-container: #21005E;
+            --md-sys-color-secondary: #625B71;
+            --md-sys-color-secondary-container: #E8DEF8;
+            --md-sys-color-background: #FFFBFE;
+            --md-sys-color-on-background: #1C1B1F;
+            --md-sys-color-surface: #FFFBFE;
+            --md-sys-color-on-surface: #1C1B1F;
+            --md-sys-color-surface-variant: #E7E0EC;
+            --md-sys-color-on-surface-variant: #49454E;
+            --md-sys-color-outline: #79747E;
+            --md-sys-color-error: #B3261E;
+            --md-sys-color-error-container: #F9DEDC;
+            --md-sys-color-warning: #F9A825;
+            --md-sys-color-warning-container: #FFF8E1;
         }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-background);
+            margin: 0;
+            padding: 16px;
+            line-height: 1.7;
+        }
+
         .privacy-container {
             max-width: 800px;
-            margin: 20px auto;
+            margin: 0 auto;
             padding: 20px;
-            background-color: var(--content-bg, #ffffff);
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .privacy-container h1, .privacy-container h2, .privacy-container h3 {
-            border-bottom: 1px solid var(--border-color, #e0e0e0);
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-            color: var(--primary-color, #0056b3);
-        }
-        .privacy-container h1 { text-align: center; }
-        .privacy-container ul {
-            list-style: disc;
-            margin-left: 20px;
-            margin-bottom: 15px;
-            padding-left: 10px;
-        }
-         .privacy-container li {
-             margin-bottom: 10px;
-             line-height: 1.6;
-         }
-         .privacy-container p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-         }
-         .nav-links {
+
+        .header {
             text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color, #e0e0e0);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--md-sys-color-primary);
+        }
+
+        h1 {
+            color: var(--md-sys-color-primary);
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+        }
+
+        .update-date {
+            display: inline-block;
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        h2 {
+            color: var(--md-sys-color-on-surface);
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--md-sys-color-surface-variant);
+            padding-bottom: 6px;
+            margin-top: 28px;
+            margin-bottom: 12px;
+        }
+
+        h3 {
+            color: var(--md-sys-color-on-surface);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 14px;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+        
+        strong {
+            color: var(--md-sys-color-on-surface);
+            font-weight: 500;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 14px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        a {
+            color: var(--md-sys-color-primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .alert {
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+
+        .alert-warning {
+            background-color: var(--md-sys-color-warning-container);
+            border-left: 4px solid var(--md-sys-color-warning);
+        }
+
+        .alert-error {
+            background-color: var(--md-sys-color-error-container);
+            border-left: 4px solid var(--md-sys-color-error);
+        }
+
+        .alert-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        .alert-text {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .feature-section {
+            background-color: var(--md-sys-color-surface-variant);
+            border-radius: 12px;
+            padding: 14px;
+            margin: 14px 0;
+        }
+
+        .feature-section h4 {
+            color: var(--md-sys-color-primary);
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+        }
+
+        .feature-section ul {
+            margin: 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.85rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid var(--md-sys-color-surface-variant);
+        }
+
+        .data-table th {
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            font-weight: 500;
+        }
+
+        .footer {
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid var(--md-sys-color-surface-variant);
+            text-align: center;
+        }
+
+        .contact-info {
+            background-color: var(--md-sys-color-primary-container);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .contact-info h3 {
+            color: var(--md-sys-color-on-primary-container);
+            margin: 0 0 10px 0;
+        }
+
+        .contact-info p {
+            margin: 4px 0;
+            color: var(--md-sys-color-on-primary-container);
+        }
+
+        .legal-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            background-color: var(--md-sys-color-secondary-container);
+            border-radius: 16px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 8px; }
+            .privacy-container { padding: 12px; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.1rem; }
+            .data-table { font-size: 0.75rem; }
+            .data-table th, .data-table td { padding: 6px; }
         }
     </style>
 </head>
 <body>
-<main class="container privacy-container">
-    <h1 data-translate-key="gizlilikPolitikasiBaslik">TIR Masraf Takip Gizlilik Politikası</h1>
-    <p>Son Güncelleme: 19 Aralık 2025</p>
+<main class="privacy-container">
+    
+    <header class="header">
+        <h1>🚛 Gizlilik Politikası</h1>
+        <span class="update-date">📅 27 Aralık 2025</span>
+    </header>
 
-    <p>Bu gizlilik politikası, Bünyamin UZEL ("Geliştirici", "biz", "bize" veya "bizim") tarafından geliştirilen TIR Masraf Takip ("Uygulama") mobil uygulamasıyla bağlantılı olarak bilgilerin nasıl toplandığını, kullanıldığını ve paylaşıldığını açıklamaktadır.</p>
+    <section>
+        <h2>1. Genel Bilgiler</h2>
+        <p>Bu gizlilik politikası, <strong>Bünyamin UZEL</strong> ("Geliştirici", "biz", "bize" veya "bizim") tarafından geliştirilen <strong>TIR Masraf Takip</strong> uygulamasında kişisel verilerin nasıl toplandığını, işlendiğini ve korunduğunu açıklamaktadır.</p>
+    </section>
 
-    <h2 data-translate-key="veriSaklamaBaslik">Bilgiler Nerede Saklanıyor?</h2>
-    <ul>
-        <li data-translate-key="veriSaklamaAciklama1"><strong>Yerel Depolama:</strong> Yazdığınız temel bilgiler (profiller, seferler, masraflar, hesaplamalar ve konum verileri) öncelikle telefonunuzun veya tabletinizin yerel depolama alanında saklanır.</li>
+    <section>
+        <h2>2. Veri Saklama</h2>
         
-        <li data-translate-key="veriSaklamaDrive"><strong>Google Drive Yedekleme (Opsiyonel):</strong> Uygulama içerisinde kendi isteğinizle "Google Drive Yedekleme" özelliğini aktif ederseniz, uygulama verilerinizin bir kopyası <strong>SİZİN</strong> kişisel Google Drive hesabınıza yüklenir. Bu verilere geliştirici olarak biz erişemeyiz; veriler sadece cihazınız ve kendi Google hesabınız arasında transfer edilir.</li>
-        
-        <li data-translate-key="veriSaklamaAciklama2">Uygulamayı silerseniz veya cihazınız sıfırlanırsa, yerel depolamadaki veriler silinir. Veri kaybını önlemek için Google Drive yedeklemesini kullanmanız veya manuel yedek almanız önerilir.</li>
-    </ul>
+        <h3>2.1 Yerel Veriler</h3>
+        <ul>
+            <li>Profil, sefer, masraf verileriniz <strong>şifreli olarak cihazınızda</strong> saklanır</li>
+            <li>SQLCipher (AES-256) şifreleme kullanılır</li>
+            <li>Bu veriler sunuculara <strong>GÖNDERİLMEZ</strong></li>
+        </ul>
 
-    <h2 data-translate-key="toplananVerilerBaslik">Toplanan Veriler ve Kullanım Amaçları</h2>
-    <ul>
-        <li data-translate-key="kvkkGenelVeriAciklama">Plaka, sefer ismi, masraf tutarları gibi veriler uygulamanın temel işlevlerini yerine getirmek için işlenir.</li>
+        <div class="alert alert-warning">
+            <div class="alert-title">⚠️ Önemli</div>
+            <p class="alert-text">Uygulamayı sildiğinizde veya cihazınız sıfırlandığında yerel veriler kalıcı olarak silinir. <strong>Ayarlar → Veri Yönetimi</strong>'nden düzenli yedekleme yapın.</p>
+        </div>
 
-        <li>
-            <strong>Konum Verileri (Zaman Çizelgesi ve Akıllı Masraf):</strong>
-            <p data-translate-key="kvkkKonumVeriAciklamaBaslangic">Uygulama, aşağıdaki özellikleri sağlamak için konum verilerini (arka planda dahi olsa) toplar:</p>
+        <h3>2.2 Bulut Veriler (Firebase)</h3>
+        <p>Topluluk özellikleri için Google Firebase kullanılır:</p>
+        <ul>
+            <li><strong>Kaptan Mahali:</strong> Mekan önerileri, yorumlar, profiller</li>
+            <li><strong>Yol Uyarıları:</strong> Konum, uyarı tipi, zaman</li>
+            <li><strong>Gümrük Kapıları:</strong> Bekleme süreleri</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>3. Toplanan Veriler</h2>
+
+        <div class="feature-section">
+            <h4>📍 Konum Verileri</h4>
+            <p>Zaman Çizelgesi özelliği için:</p>
             <ul>
-                <li><strong>Zaman Çizelgesi:</strong> Sefer sırasında rotanızı harita üzerinde çizmek ve ülke giriş-çıkışlarını tespit etmek.</li>
-                <li><strong>Akıllı Masraf Yönetimi:</strong> Belirlediğiniz bir konuma (örn: Kapıkule, Park Alanı) yaklaştığınızda, uygulamayı açmasanız bile size hatırlatma yapmak veya otomatik kural işletmek.</li>
+                <li>Kesin konum, hız, zaman damgası</li>
+                <li>Arka planda bile toplanır</li>
+                <li><strong>SADECE cihazınızda saklanır</strong></li>
             </ul>
-        </li>
-        
-        <li>
-            <strong>Kamera ve Görüntü Verileri:</strong>
-            <p>Uygulama, masraf fişlerinizi taramak (OCR) ve kaydetmek amacıyla cihazınızın kamerasına erişim ister. Çekilen fotoğraflar sadece metin okuma işlemi için kullanılır ve cihazınızda yerel olarak saklanır.</p>
-        </li>
+        </div>
 
-        <li>
-            <strong>Bluetooth Verileri:</strong>
-            <p>Uygulama, aracınızdaki takograf veya Bluetooth özellikli cihazlarla eşleşerek sefer takibini kolaylaştırmak amacıyla Bluetooth taraması ve bağlantısı yapabilir.</p>
-        </li>
-    </ul>
+        <table class="data-table">
+            <tr>
+                <th>Veri</th>
+                <th>Saklama</th>
+            </tr>
+            <tr>
+                <td>Profil, sefer, masraf</td>
+                <td>Yerel (şifreli)</td>
+            </tr>
+            <tr>
+                <td>Konum verileri</td>
+                <td>Yerel (şifreli)</td>
+            </tr>
+            <tr>
+                <td>Kaptan Mahali içerikleri</td>
+                <td>Bulut (Firebase)</td>
+            </tr>
+        </table>
+    </section>
 
-    <h2 data-translate-key="izinlerBaslik">Uygulama İzinleri</h2>
-    <p>Uygulamamızın tam performansla çalışabilmesi için aşağıdaki izinler gereklidir:</p>
-    <ul>
-        <li><strong>Konum (ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION):</strong> Rota takibi, ülke tespiti ve konuma dayalı masraf hatırlatmaları için kullanılır. Arka plan izni, telefon cebinizdeyken bile takibin sürmesi için kritiktir.</li>
-        <li><strong>Kamera (CAMERA):</strong> Masraf fişlerinin fotoğrafını çekmek ve üzerindeki yazıları (Tutar, Tarih) otomatik okumak için kullanılır.</li>
-        <li><strong>Bluetooth (BLUETOOTH_SCAN, BLUETOOTH_CONNECT):</strong> Yakındaki araç cihazlarını bulmak ve eşleşmek için kullanılır (Android 12 ve üzeri için).</li>
-        <li><strong>Google Drive Erişimi:</strong> Sadece uygulamanın oluşturduğu yedek dosyalarını okumak ve yazmak için (drive.file yetkisi) kullanılır. Diğer dosyalarınıza erişilmez.</li>
-        <li><strong>Bildirimler (POST_NOTIFICATIONS):</strong> Arka planda çalışan servis durumu hakkında bilgi vermek ve özel gün (doğum günü) kutlamaları için kullanılır.</li>
-    </ul>
+    <section>
+        <h2>4. Kaptan Mahali</h2>
+        <p>Sürücülerin mekan önerileri paylaştığı topluluk platformu.</p>
 
-    <h2 data-translate-key="ucuncuTarafHizmetler">Üçüncü Taraf Hizmetler</h2>
-    <ul>
-        <li><strong>Google Drive API:</strong> Verilerinizi buluta yedeklemek ve geri yüklemek için kullanılır.</li>
-        <li><strong>Firebase (Google):</strong> Uygulamanın çökme raporlarını (Crashlytics) analiz etmek ve uygulama performansını iyileştirmek için anonim teknik veriler toplanabilir.</li>
-    </ul>
+        <div class="alert alert-error">
+            <div class="alert-title">🚨 Kullanıcı Sorumluluğu</div>
+            <p class="alert-text">Paylaşılan içeriklerden <strong>içeriği paylaşan kullanıcı sorumludur</strong>. Geliştirici, kullanıcı içeriklerinin doğruluğunu garanti etmez.</p>
+        </div>
 
-    <h2 data-translate-key="sorumlulukReddiBaslik">Sorumluluk Reddi</h2>
-    <ul>
-        <li data-translate-key="sorumlulukReddiAciklama1">Bu uygulama bir yardımcı araçtır. Resmi muhasebe kaydı yerine geçmez.</li>
-        <li data-translate-key="sorumlulukReddiAciklama2">Hesaplamalar (Harcırah, Yakıt Ortalaması) girdiğiniz verilere dayanır. Veri girişindeki hatalardan kullanıcı sorumludur.</li>
-    </ul>
+        <h3>Yasak İçerikler</h3>
+        <ul>
+            <li>Küfür, hakaret, nefret söylemi</li>
+            <li>Sahte/yanıltıcı bilgiler, spam</li>
+            <li>Kişisel bilgi ifşası</li>
+        </ul>
 
-    <h2 data-translate-key="iletisimBaslik">İletişim</h2>
-    <p>E-posta: <a href="mailto:bunyaminuzel@gmail.com">bunyaminuzel@gmail.com</a></p>
-    <p>Web: <a href="https://zupherman.github.io/privacy/privacy.html" target="_blank">https://zupherman.github.io/privacy/privacy.html</a></p>
+        <h3>Moderasyon</h3>
+        <ul>
+            <li>Otomatik küfür filtresi</li>
+            <li>3+ şikayet = otomatik gizleme</li>
+            <li>Tekrarlayan ihlal = hesap askıya alma</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>5. Yol Uyarıları</h2>
+
+        <div class="alert alert-error">
+            <div class="alert-title">⚖️ Yasal Uyarı</div>
+            <p class="alert-text">Radar/kontrol uyarıları <strong>bazı ülkelerde yasadışıdır</strong> (Almanya, İsviçre, Fransa vb.). Para cezası veya araç el koyma riski vardır. Bu özelliği kullanarak <strong>tüm yasal sorumluluğu kabul etmiş olursunuz</strong>.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>6. Uygulama İzinleri</h2>
+        <table class="data-table">
+            <tr>
+                <th>İzin</th>
+                <th>Amaç</th>
+            </tr>
+            <tr>
+                <td>Konum</td>
+                <td>Zaman çizelgesi, ülke tespiti</td>
+            </tr>
+            <tr>
+                <td>Arka Plan Konum</td>
+                <td>Kesintisiz rota kaydı</td>
+            </tr>
+            <tr>
+                <td>İnternet</td>
+                <td>Döviz kurları, topluluk özellikleri</td>
+            </tr>
+            <tr>
+                <td>Bildirimler</td>
+                <td>Sefer uyarıları</td>
+            </tr>
+            <tr>
+                <td>Kamera</td>
+                <td>Fiş fotoğrafı</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>7. KVKK/GDPR Hakları</h2>
+        <ul>
+            <li><strong>Erişim:</strong> Verilerinizi görüntüleme</li>
+            <li><strong>Düzeltme:</strong> Yanlış verileri düzeltme</li>
+            <li><strong>Silme:</strong> Verilerinizin silinmesini isteme</li>
+            <li><strong>Taşınabilirlik:</strong> Verilerinizi dışa aktarma</li>
+        </ul>
+
+        <div class="feature-section">
+            <h4>📱 Haklarınızı Kullanın</h4>
+            <ul>
+                <li><strong>Ayarlar → Veri Yönetimi → Dışa Aktar</strong></li>
+                <li><strong>Ayarlar → Veri Yönetimi → Verileri Sil</strong></li>
+                <li>Bulut verileri için: bunyaminuzel@gmail.com</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>8. Sorumluluk Reddi</h2>
+        <ul>
+            <li>Bu uygulama resmi muhasebe programı <strong>DEĞİLDİR</strong></li>
+            <li>Hesaplamaların doğruluğu girdiğiniz verilere bağlıdır</li>
+            <li>Resmi işlemler için muhasebecinize danışın</li>
+            <li>Veri kaybından geliştirici sorumlu tutulamaz</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>9. Yaş Sınırı</h2>
+        <p>Bu uygulama <strong>18 yaş ve üzeri</strong> profesyonel şoförler içindir. 18 yaş altından bilerek veri toplamıyoruz.</p>
+    </section>
+
+    <footer class="footer">
+        <div class="contact-info">
+            <h3>📬 İletişim</h3>
+            <p><strong>E-posta:</strong> bunyaminuzel@gmail.com</p>
+            <p><strong>Web:</strong> <a href="https://zupherman.github.io/privacy/privacy.html" target="_blank">https://zupherman.github.io/privacy/privacy.html</a></p>
+        </div>
+        <div class="legal-badges">
+            <span class="badge">🇹🇷 KVKK</span>
+            <span class="badge">🇪🇺 GDPR</span>
+            <span class="badge">🔒 Şifreli</span>
+        </div>
+        <p style="margin-top: 16px; font-size: 0.8rem; color: var(--md-sys-color-on-surface-variant);">
+            © 2024-2025 TIR Masraf Takip
+        </p>
+    </footer>
 
 </main>
 </body>
